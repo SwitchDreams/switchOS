@@ -9,4 +9,5 @@ type ProcessExecution struct {
 	pid        int
 	startTime  int
 	finishTime int
+	duration   int
 }

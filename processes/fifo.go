@@ -14,6 +14,7 @@ func Fifo(processes []Process) ([]ProcessExecution, error) {
 			pid:        i,
 			startTime:  startTime,
 			finishTime: startTime + process.duration,
+			duration:   process.duration,
 		})
 		currentTime += process.duration
 	}
