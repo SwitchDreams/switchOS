@@ -23,3 +23,19 @@ func TestFifo(t *testing.T) {
 		t.Errorf("got %v, wanted %v", got, want)
 	}
 }
+
+func TestFifoWithIdleTime(t *testing.T) {
+	processes := []Process{
+		{arrivalTime: 0, duration: 5}, {arrivalTime: 7, duration: 10},
+	}
+	processesExecution := []ProcessExecution{
+		{pid: 0, startTime: 0, finishTime: 5},
+		{pid: 1, startTime: 7, finishTime: 17},
+	}
+	got, _ := Fifo(processes)
+	want := processesExecution
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v, wanted %v", got, want)
+	}
+}
