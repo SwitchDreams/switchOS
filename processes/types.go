@@ -1,6 +1,12 @@
 package processes
 
 type Process struct {
-	duration    int
 	arrivalTime int
+	duration    int
+}
+
+type ProcessExecution struct {
+	pid        int
+	startTime  int
+	finishTime int
 }
