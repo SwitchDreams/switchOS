@@ -7,8 +7,8 @@ import (
 
 func TestFifo(t *testing.T) {
 	processes := []Process{
-		{arrivalTime: 0, duration: 20}, {arrivalTime: 0, duration: 10},
-		{arrivalTime: 4, duration: 6}, {arrivalTime: 4, duration: 8},
+		{id: 0, arrivalTime: 0, duration: 20}, {id: 1, arrivalTime: 0, duration: 10},
+		{id: 2, arrivalTime: 4, duration: 6}, {id: 3, arrivalTime: 4, duration: 8},
 	}
 	processesExecution := []ProcessExecution{
 		{pid: 0, startTime: 0, finishTime: 20},
@@ -26,7 +26,7 @@ func TestFifo(t *testing.T) {
 
 func TestFifoWithIdleTime(t *testing.T) {
 	processes := []Process{
-		{arrivalTime: 0, duration: 5}, {arrivalTime: 7, duration: 10},
+		{id: 0, arrivalTime: 0, duration: 5}, {id: 1, arrivalTime: 7, duration: 10},
 	}
 	processesExecution := []ProcessExecution{
 		{pid: 0, startTime: 0, finishTime: 5},
