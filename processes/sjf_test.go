@@ -5,18 +5,18 @@ import (
 	"testing"
 )
 
-func TestFifo(t *testing.T) {
+func TestSjf(t *testing.T) {
 	processes := []Process{
 		{id: 0, arrivalTime: 0, duration: 20}, {id: 1, arrivalTime: 0, duration: 10},
 		{id: 2, arrivalTime: 4, duration: 6}, {id: 3, arrivalTime: 4, duration: 8},
 	}
 	processesExecution := []ProcessExecution{
-		{pid: 0, startTime: 0, finishTime: 20},
-		{pid: 1, startTime: 20, finishTime: 30},
-		{pid: 2, startTime: 30, finishTime: 36},
-		{pid: 3, startTime: 36, finishTime: 44},
+		{pid: 1, startTime: 0, finishTime: 10},
+		{pid: 2, startTime: 10, finishTime: 16},
+		{pid: 3, startTime: 16, finishTime: 24},
+		{pid: 0, startTime: 24, finishTime: 44},
 	}
-	got, _ := Fifo(processes)
+	got, _ := Sjf(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {
@@ -24,7 +24,7 @@ func TestFifo(t *testing.T) {
 	}
 }
 
-func TestFifoWithIdleTime(t *testing.T) {
+func TestSjfWithIdleTime(t *testing.T) {
 	processes := []Process{
 		{id: 0, arrivalTime: 0, duration: 5}, {id: 1, arrivalTime: 7, duration: 10},
 	}
@@ -32,7 +32,7 @@ func TestFifoWithIdleTime(t *testing.T) {
 		{pid: 0, startTime: 0, finishTime: 5},
 		{pid: 1, startTime: 7, finishTime: 17},
 	}
-	got, _ := Fifo(processes)
+	got, _ := Sjf(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {

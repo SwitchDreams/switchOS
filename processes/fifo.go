@@ -2,20 +2,20 @@ package processes
 
 func Fifo(processes []Process) ([]ProcessExecution, error) {
 	var processExecutionList []ProcessExecution
-	var currentTime = 0
-	var startTime = 0
-	for i, process := range processes {
+	var currentTime int
+	var startTime int
+	for _, process := range processes {
 		if process.arrivalTime > currentTime {
 			startTime = process.arrivalTime
 		} else {
 			startTime = currentTime
 		}
 		processExecutionList = append(processExecutionList, ProcessExecution{
-			pid:        i,
+			pid:        process.id,
 			startTime:  startTime,
 			finishTime: startTime + process.duration,
 		})
-		currentTime += process.duration
+		currentTime = process.duration + startTime
 	}
 	return processExecutionList, nil
 }

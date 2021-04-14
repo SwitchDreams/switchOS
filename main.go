@@ -8,5 +8,9 @@ import (
 
 func main() {
 	processList, _ := processes.Parse("./file.txt")
+	processExecutionFifo, _ := processes.Fifo(processList)
+	processExecutionSjf, _ := processes.Sjf(processList)
 	fmt.Println(processList)
+	fmt.Println(processExecutionSjf)
+	fmt.Println(processExecutionFifo)
 }
