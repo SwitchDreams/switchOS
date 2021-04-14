@@ -49,3 +49,9 @@ func getArrivedProcesses(processes []Process, currentTime int) []Process {
 	}
 	return arrivedProcesses
 }
+
+func getSortedArrivedProcesses(processes []Process, currentTime int) []Process {
+	arrivedProcesses := getArrivedProcesses(processes, currentTime)
+	sort.Slice(arrivedProcesses, func(i, j int) bool { return arrivedProcesses[i].duration < arrivedProcesses[j].duration })
+	return arrivedProcesses
+}
