@@ -7,7 +7,7 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 		currentProcess := arrivedProcesses[0]
 
 		if currentProcess.duration <= 2 {
-			removeProcesses(processes, currentProcess.id)
+			processes = removeProcesses(processes, currentProcess.id)
 		}
 
 		processExecutionList = append(processExecutionList, ProcessExecution{
@@ -16,7 +16,7 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 			finishTime: currentTime + 2,
 		})
 
-		decreaseDurationProcess(processes, currentProcess.id)
+		processes = decreaseDurationProcess(processes, currentProcess.id)
 		if len(processes) == 0 {
 			break
 		}
