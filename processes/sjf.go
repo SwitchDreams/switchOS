@@ -2,7 +2,7 @@ package processes
 
 import "sort"
 
-func Sjf(processes []Process) ([]ProcessExecution, error) {
+func Sjf(processes []Process) []ProcessExecution {
 
 	var currentTime int
 	var arrivedProcesses []Process
@@ -27,7 +27,7 @@ func Sjf(processes []Process) ([]ProcessExecution, error) {
 		processes = removeProcesses(processes, arrivedProcesses[0].id)
 	}
 
-	return processExecutionList, nil
+	return processExecutionList
 }
 
 func removeProcesses(processes []Process, id int) []Process {

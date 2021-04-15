@@ -6,14 +6,16 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/switchdreams/switchOS/errors"
 )
 
 // Parse parses input filr
-func Parse(filename string) ([]Process, error) {
+func Parse(filename string) ([]Process, errors.IOSError) {
 	var contador int
 	file, err := os.Open(filename)
 	if err != nil {
-		return nil, err
+		return nil, errors.WrapError(err, "failed to open file")
 	}
 	defer file.Close()
 
@@ -33,7 +35,7 @@ func Parse(filename string) ([]Process, error) {
 			duration:    duration,
 		})
 		fmt.Println(contador)
-		contador += 1
+		contador++
 	}
 
 	return processList, nil

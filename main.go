@@ -7,9 +7,16 @@ import (
 )
 
 func main() {
-	processList, _ := processes.Parse("./file.txt")
-	processExecutionFifo, _ := processes.Fifo(processList)
-	processExecutionSjf, _ := processes.Sjf(processList)
+	processList, err := processes.Parse("./file.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	processExecutionFifo := processes.Fifo(processList)
+
+	processExecutionSjf := processes.Sjf(processList)
+
 	fmt.Println(processList)
 	fmt.Println(processExecutionSjf)
 	fmt.Println(processExecutionFifo)

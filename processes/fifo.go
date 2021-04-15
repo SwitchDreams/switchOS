@@ -1,6 +1,6 @@
 package processes
 
-func Fifo(processes []Process) ([]ProcessExecution, error) {
+func Fifo(processes []Process) []ProcessExecution {
 	var processExecutionList []ProcessExecution
 	var currentTime int
 	var startTime int
@@ -17,5 +17,5 @@ func Fifo(processes []Process) ([]ProcessExecution, error) {
 		})
 		currentTime = process.duration + startTime
 	}
-	return processExecutionList, nil
+	return processExecutionList
 }

@@ -16,7 +16,7 @@ func TestFifo(t *testing.T) {
 		{pid: 2, startTime: 30, finishTime: 36},
 		{pid: 3, startTime: 36, finishTime: 44},
 	}
-	got, _ := Fifo(processes)
+	got := Fifo(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {
@@ -32,7 +32,7 @@ func TestFifoWithIdleTime(t *testing.T) {
 		{pid: 0, startTime: 0, finishTime: 5},
 		{pid: 1, startTime: 7, finishTime: 17},
 	}
-	got, _ := Fifo(processes)
+	got := Fifo(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {

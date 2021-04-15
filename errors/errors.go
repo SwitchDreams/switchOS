@@ -1,6 +1,6 @@
 package errors
 
-type IError interface {
+type IOSError interface {
 	Error() string
 }
 
