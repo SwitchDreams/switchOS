@@ -7,9 +7,12 @@ import (
 
 func TestRoundRobin(t *testing.T) {
 	processes := []Process{
-		{id: 0, arrivalTime: 0, duration: 20}, {id: 1, arrivalTime: 0, duration: 10},
-		{id: 2, arrivalTime: 4, duration: 6}, {id: 3, arrivalTime: 4, duration: 8},
+		{id: 0, arrivalTime: 0, duration: 20},
+		{id: 1, arrivalTime: 0, duration: 10},
+		{id: 2, arrivalTime: 4, duration: 6},
+		{id: 3, arrivalTime: 4, duration: 8},
 	}
+
 	processesExecution := []ProcessExecution{
 		{pid: 0, startTime: 0, finishTime: 2},
 		{pid: 1, startTime: 2, finishTime: 4},
