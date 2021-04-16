@@ -45,7 +45,6 @@ func TestRoundRobin(t *testing.T) {
 	}
 }
 
-// TODO: Pass in this test
 func TestRoundRobinDurationNotMod2(t *testing.T) {
 	processes := []Process{
 		{id: 1, arrivalTime: 0, duration: 6},
