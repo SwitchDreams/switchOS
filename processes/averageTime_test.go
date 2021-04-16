@@ -16,7 +16,7 @@ func TestCalcFifo(t *testing.T) {
 		{pid: 2, startTime: 30, finishTime: 36},
 		{pid: 3, startTime: 36, finishTime: 44},
 	}
-	ttTime, responseTime, waitTime := Calc(processes, processesExecution, false)
+	ttTime, responseTime, waitTime := AverageTime(processes, processesExecution, false)
 	got := []float32{ttTime, responseTime, waitTime}
 	want := []float32{30.5, 19.5, 19.5}
 
@@ -36,7 +36,7 @@ func TestCalcSjf(t *testing.T) {
 		{pid: 3, startTime: 16, finishTime: 24},
 		{pid: 0, startTime: 24, finishTime: 44},
 	}
-	ttTime, responseTime, waitTime := Calc(processes, processesExecution, false)
+	ttTime, responseTime, waitTime := AverageTime(processes, processesExecution, false)
 	got := []float32{ttTime, responseTime, waitTime}
 	want := []float32{21.5, 10.5, 10.5}
 
@@ -77,7 +77,7 @@ func TestCalcRoundRobin(t *testing.T) {
 		{pid: 0, startTime: 40, finishTime: 42},
 		{pid: 0, startTime: 42, finishTime: 44},
 	}
-	ttTime, responseTime, waitTime := Calc(processes, processesExecution, true)
+	ttTime, responseTime, waitTime := AverageTime(processes, processesExecution, true)
 	got := []float32{ttTime, responseTime, waitTime}
 	want := []float32{31.5, 2.0, 20.5}
 

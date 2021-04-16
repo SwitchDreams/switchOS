@@ -1,6 +1,6 @@
 package processes
 
-func Calc(processes []Process, processExecutions []ProcessExecution, isRR bool) (float32, float32, float32) {
+func AverageTime(processes []Process, processExecutions []ProcessExecution, isRR bool) (float32, float32, float32) {
 	var turnAroundTime int
 	var waitTime int
 	var finishedPids []int
