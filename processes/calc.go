@@ -1,6 +1,6 @@
 package processes
 
-func Calc(processes []Process, processExecutions []ProcessExecution) (float32, float32, float32) {
+func Calc(processes []Process, processExecutions []ProcessExecution, isRR bool) (float32, float32, float32) {
 	var turnAroundTime int
 	var waitTime int
 	var finishedPids []int
@@ -20,9 +20,16 @@ func Calc(processes []Process, processExecutions []ProcessExecution) (float32, f
 		}
 	}
 
-	return float32(turnAroundTime) / float32(lenProcesses),
-		float32(waitTime) / float32(lenProcesses),
-		float32(waitTime) / float32(lenProcesses)
+	turnAroundAverage := float32(turnAroundTime) / float32(lenProcesses)
+	waitTimeAverage := float32(waitTime) / float32(lenProcesses)
+	var responseAverage float32
+	if isRR {
+		responseAverage = float32(Quantum)
+	} else {
+		responseAverage = waitTimeAverage
+	}
+
+	return turnAroundAverage, responseAverage, waitTimeAverage
 }
 
 func Find(slice []int, val int) bool {
