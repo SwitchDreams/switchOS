@@ -1,6 +1,7 @@
 package processes
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -16,8 +17,10 @@ func TestCalc(t *testing.T) {
 		{pid: 3, startTime: 36, finishTime: 44},
 	}
 	ttTime, _, waitTime := Calc(processes, processesExecution)
+	got := []float32{ttTime, waitTime, waitTime}
+	want := []float32{30.5, 19.5, 19.5}
 
-	if ttTime != 30.5 || waitTime != 19.5 {
-		t.Errorf("got %v, %v", ttTime, waitTime)
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v, wanted %v", got, want)
 	}
 }

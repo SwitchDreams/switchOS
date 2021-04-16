@@ -20,7 +20,9 @@ func Calc(processes []Process, processExecutions []ProcessExecution) (float32, f
 		}
 	}
 
-	return float32(turnAroundTime) / float32(lenProcesses), 0, float32(waitTime) / float32(lenProcesses)
+	return float32(turnAroundTime) / float32(lenProcesses),
+		float32(waitTime) / float32(lenProcesses),
+		float32(waitTime) / float32(lenProcesses)
 }
 
 func Find(slice []int, val int) bool {
