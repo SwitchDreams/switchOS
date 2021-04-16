@@ -3,7 +3,7 @@ package processes
 func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 	var processExecutionList []ProcessExecution
 	var arrivedProcesses, registeredProcesses, nextArrivedProcesses []Process
-	var finishTime int
+	var finishTime, decreaseTime int
 	for currentTime := 0; ; {
 		arrivedProcesses = getAtMomentProcesses(processes, currentTime)
 		registeredProcesses = append(registeredProcesses, arrivedProcesses...)
@@ -25,8 +25,10 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 
 		if currentProcess.duration < 2 {
 			finishTime = currentTime + currentProcess.duration
+			decreaseTime = currentProcess.duration
 		} else {
 			finishTime = currentTime + 2
+			decreaseTime = 2
 		}
 
 		processExecutionList = append(processExecutionList, ProcessExecution{
@@ -35,7 +37,7 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 			finishTime: finishTime,
 		})
 
-		registeredProcesses = decreaseDurationProcess(registeredProcesses, currentProcess.id)
+		registeredProcesses = decreaseDurationProcess(registeredProcesses, currentProcess.id, decreaseTime)
 
 		if currentProcess.duration <= 2 {
 			registeredProcesses = removeProcesses(registeredProcesses, currentProcess.id)
@@ -52,10 +54,10 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 	return processExecutionList, nil
 }
 
-func decreaseDurationProcess(processes []Process, id int) []Process {
+func decreaseDurationProcess(processes []Process, id int, decreaseTime int) []Process {
 	for index, process := range processes {
 		if process.id == id {
-			processes[index].duration -= 2
+			processes[index].duration -= decreaseTime
 		}
 	}
 	return processes

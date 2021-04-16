@@ -63,6 +63,7 @@ func TestRoundRobinDurationNotMod2(t *testing.T) {
 		{pid: 2, startTime: 9, finishTime: 10},
 		{pid: 4, startTime: 10, finishTime: 12},
 		{pid: 1, startTime: 12, finishTime: 14},
+		{pid: 4, startTime: 14, finishTime: 16},
 		{pid: 4, startTime: 16, finishTime: 17},
 	}
 	got, _ := RoundRobin(processes)
