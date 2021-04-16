@@ -5,14 +5,18 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 	var arrivedProcesses, registeredProcesses, nextArrivedProcesses []Process
 	var finishTime, decreaseTime int
 	for currentTime := 0; ; {
+
 		arrivedProcesses = getAtMomentProcesses(processes, currentTime)
 		registeredProcesses = append(registeredProcesses, arrivedProcesses...)
 
+		// nextArrived adiciona na lista final de execução (registeredProcess) os processos do próximo ciclo
+		// para ordenar corretamente o Slice
 		nextArrivedProcesses = getAtMomentProcesses(processes, (currentTime + 2))
 		if len(nextArrivedProcesses) > 0 {
 			registeredProcesses = append(registeredProcesses, nextArrivedProcesses...)
 		}
 
+		// Ao adicionar os processos no slice de execução (registered), remove da lista inicial de processos
 		for _, p := range arrivedProcesses {
 			processes = removeProcesses(processes, p.id)
 		}
@@ -20,8 +24,15 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 		for _, p := range nextArrivedProcesses {
 			processes = removeProcesses(processes, p.id)
 		}
+		// ------------------------------------------------------------------------------------------------
 
 		currentProcess := registeredProcesses[0]
+
+		if currentProcess.arrivalTime > currentTime {
+			// Se o processo atual não está em seu momento de execução -> Idle
+			currentTime += 1
+			continue
+		}
 
 		if currentProcess.duration < 2 {
 			finishTime = currentTime + currentProcess.duration
