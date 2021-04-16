@@ -15,4 +15,5 @@ func main() {
 	fmt.Println(processList)
 	fmt.Println(processExecutionSjf)
 	fmt.Println(processExecutionFifo)
+
 }
