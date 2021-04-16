@@ -1,5 +1,7 @@
 package processes
 
+const Quantum = 2
+
 func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 	var processExecutionList []ProcessExecution
 	var arrivedProcesses, registeredProcesses, nextArrivedProcesses []Process
@@ -11,7 +13,7 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 
 		// nextArrived adiciona na lista final de execução (registeredProcess) os processos do próximo ciclo
 		// para ordenar corretamente o Slice
-		nextArrivedProcesses = getAtMomentProcesses(processes, (currentTime + 2))
+		nextArrivedProcesses = getAtMomentProcesses(processes, currentTime+Quantum)
 		if len(nextArrivedProcesses) > 0 {
 			registeredProcesses = append(registeredProcesses, nextArrivedProcesses...)
 		}
@@ -34,12 +36,12 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 			continue
 		}
 
-		if currentProcess.duration < 2 {
+		if currentProcess.duration < Quantum {
 			finishTime = currentTime + currentProcess.duration
 			decreaseTime = currentProcess.duration
 		} else {
-			finishTime = currentTime + 2
-			decreaseTime = 2
+			finishTime = currentTime + Quantum
+			decreaseTime = Quantum
 		}
 
 		processExecutionList = append(processExecutionList, ProcessExecution{
@@ -50,7 +52,7 @@ func RoundRobin(processes []Process) ([]ProcessExecution, error) {
 
 		registeredProcesses = decreaseDurationProcess(registeredProcesses, currentProcess.id, decreaseTime)
 
-		if currentProcess.duration <= 2 {
+		if currentProcess.duration <= Quantum {
 			registeredProcesses = removeProcesses(registeredProcesses, currentProcess.id)
 		} else {
 			registeredProcesses = firstToLast(registeredProcesses)
