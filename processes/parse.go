@@ -2,7 +2,6 @@ package processes
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -32,7 +31,6 @@ func Parse(filename string) ([]Process, error) {
 			arrivalTime: arrival,
 			duration:    duration,
 		})
-		fmt.Println(contador)
 		contador += 1
 	}
 

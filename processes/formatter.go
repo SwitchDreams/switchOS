@@ -7,7 +7,7 @@ import (
 )
 
 func ExecutionToFile(processesExecutionList []ProcessExecution, filename string) {
-	f, err := os.Create(filename)
+	f, err := os.Create("./output/" + filename)
 
 	if err != nil {
 		log.Fatal(err)
