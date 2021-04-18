@@ -24,12 +24,12 @@ func Parse(filename string) ([]Process, error) {
 
 		lineSplit := strings.Split(line, " ")
 		arrival, _ := strconv.Atoi(lineSplit[0])
-		duration, _ := strconv.Atoi(lineSplit[1])
+		Duration, _ := strconv.Atoi(lineSplit[1])
 
 		processList = append(processList, Process{
-			id:          contador,
-			arrivalTime: arrival,
-			duration:    duration,
+			ID:          contador,
+			ArrivalTime: arrival,
+			Duration:    Duration,
 		})
 		contador += 1
 	}

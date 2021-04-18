@@ -7,16 +7,16 @@ func AverageTime(processes []Process, processExecutions []ProcessExecution, isRR
 	lenProcesses := len(processes)
 	for i := len(processExecutions) - 1; i >= 0; i-- {
 		// If process has finished
-		if !Find(finishedPids, processExecutions[i].pid) {
+		if !Find(finishedPids, processExecutions[i].Pid) {
 			var turnAroundProcessTime int
 			// TurnAround
-			turnAroundProcessTime += processExecutions[i].finishTime
-			turnAroundProcessTime -= processes[processExecutions[i].pid].arrivalTime
+			turnAroundProcessTime += processExecutions[i].FinishTime
+			turnAroundProcessTime -= processes[processExecutions[i].Pid].ArrivalTime
 
 			turnAroundTime += turnAroundProcessTime
 			// WaitTime
-			waitTime += turnAroundProcessTime - processes[processExecutions[i].pid].duration
-			finishedPids = append(finishedPids, processExecutions[i].pid)
+			waitTime += turnAroundProcessTime - processes[processExecutions[i].Pid].Duration
+			finishedPids = append(finishedPids, processExecutions[i].Pid)
 		}
 	}
 

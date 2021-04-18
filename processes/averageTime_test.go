@@ -7,14 +7,14 @@ import (
 
 func TestCalcFifo(t *testing.T) {
 	processes := []Process{
-		{id: 0, arrivalTime: 0, duration: 20}, {id: 1, arrivalTime: 0, duration: 10},
-		{id: 2, arrivalTime: 4, duration: 6}, {id: 3, arrivalTime: 4, duration: 8},
+		{ID: 0, ArrivalTime: 0, Duration: 20}, {ID: 1, ArrivalTime: 0, Duration: 10},
+		{ID: 2, ArrivalTime: 4, Duration: 6}, {ID: 3, ArrivalTime: 4, Duration: 8},
 	}
 	processesExecution := []ProcessExecution{
-		{pid: 0, startTime: 0, finishTime: 20},
-		{pid: 1, startTime: 20, finishTime: 30},
-		{pid: 2, startTime: 30, finishTime: 36},
-		{pid: 3, startTime: 36, finishTime: 44},
+		{Pid: 0, StartTime: 0, FinishTime: 20},
+		{Pid: 1, StartTime: 20, FinishTime: 30},
+		{Pid: 2, StartTime: 30, FinishTime: 36},
+		{Pid: 3, StartTime: 36, FinishTime: 44},
 	}
 	ttTime, responseTime, waitTime := AverageTime(processes, processesExecution, false)
 	got := []float32{ttTime, responseTime, waitTime}
@@ -27,14 +27,14 @@ func TestCalcFifo(t *testing.T) {
 
 func TestCalcSjf(t *testing.T) {
 	processes := []Process{
-		{id: 0, arrivalTime: 0, duration: 20}, {id: 1, arrivalTime: 0, duration: 10},
-		{id: 2, arrivalTime: 4, duration: 6}, {id: 3, arrivalTime: 4, duration: 8},
+		{ID: 0, ArrivalTime: 0, Duration: 20}, {ID: 1, ArrivalTime: 0, Duration: 10},
+		{ID: 2, ArrivalTime: 4, Duration: 6}, {ID: 3, ArrivalTime: 4, Duration: 8},
 	}
 	processesExecution := []ProcessExecution{
-		{pid: 1, startTime: 0, finishTime: 10},
-		{pid: 2, startTime: 10, finishTime: 16},
-		{pid: 3, startTime: 16, finishTime: 24},
-		{pid: 0, startTime: 24, finishTime: 44},
+		{Pid: 1, StartTime: 0, FinishTime: 10},
+		{Pid: 2, StartTime: 10, FinishTime: 16},
+		{Pid: 3, StartTime: 16, FinishTime: 24},
+		{Pid: 0, StartTime: 24, FinishTime: 44},
 	}
 	ttTime, responseTime, waitTime := AverageTime(processes, processesExecution, false)
 	got := []float32{ttTime, responseTime, waitTime}
@@ -47,35 +47,35 @@ func TestCalcSjf(t *testing.T) {
 
 func TestCalcRoundRobin(t *testing.T) {
 	processes := []Process{
-		{id: 0, arrivalTime: 0, duration: 20},
-		{id: 1, arrivalTime: 0, duration: 10},
-		{id: 2, arrivalTime: 4, duration: 6},
-		{id: 3, arrivalTime: 4, duration: 8},
+		{ID: 0, ArrivalTime: 0, Duration: 20},
+		{ID: 1, ArrivalTime: 0, Duration: 10},
+		{ID: 2, ArrivalTime: 4, Duration: 6},
+		{ID: 3, ArrivalTime: 4, Duration: 8},
 	}
 
 	processesExecution := []ProcessExecution{
-		{pid: 0, startTime: 0, finishTime: 2},
-		{pid: 1, startTime: 2, finishTime: 4},
-		{pid: 0, startTime: 4, finishTime: 6},
-		{pid: 2, startTime: 6, finishTime: 8},
-		{pid: 3, startTime: 8, finishTime: 10},
-		{pid: 1, startTime: 10, finishTime: 12},
-		{pid: 0, startTime: 12, finishTime: 14},
-		{pid: 2, startTime: 14, finishTime: 16},
-		{pid: 3, startTime: 16, finishTime: 18},
-		{pid: 1, startTime: 18, finishTime: 20},
-		{pid: 0, startTime: 20, finishTime: 22},
-		{pid: 2, startTime: 22, finishTime: 24},
-		{pid: 3, startTime: 24, finishTime: 26},
-		{pid: 1, startTime: 26, finishTime: 28},
-		{pid: 0, startTime: 28, finishTime: 30},
-		{pid: 3, startTime: 30, finishTime: 32},
-		{pid: 1, startTime: 32, finishTime: 34},
-		{pid: 0, startTime: 34, finishTime: 36},
-		{pid: 0, startTime: 36, finishTime: 38},
-		{pid: 0, startTime: 38, finishTime: 40},
-		{pid: 0, startTime: 40, finishTime: 42},
-		{pid: 0, startTime: 42, finishTime: 44},
+		{Pid: 0, StartTime: 0, FinishTime: 2},
+		{Pid: 1, StartTime: 2, FinishTime: 4},
+		{Pid: 0, StartTime: 4, FinishTime: 6},
+		{Pid: 2, StartTime: 6, FinishTime: 8},
+		{Pid: 3, StartTime: 8, FinishTime: 10},
+		{Pid: 1, StartTime: 10, FinishTime: 12},
+		{Pid: 0, StartTime: 12, FinishTime: 14},
+		{Pid: 2, StartTime: 14, FinishTime: 16},
+		{Pid: 3, StartTime: 16, FinishTime: 18},
+		{Pid: 1, StartTime: 18, FinishTime: 20},
+		{Pid: 0, StartTime: 20, FinishTime: 22},
+		{Pid: 2, StartTime: 22, FinishTime: 24},
+		{Pid: 3, StartTime: 24, FinishTime: 26},
+		{Pid: 1, StartTime: 26, FinishTime: 28},
+		{Pid: 0, StartTime: 28, FinishTime: 30},
+		{Pid: 3, StartTime: 30, FinishTime: 32},
+		{Pid: 1, StartTime: 32, FinishTime: 34},
+		{Pid: 0, StartTime: 34, FinishTime: 36},
+		{Pid: 0, StartTime: 36, FinishTime: 38},
+		{Pid: 0, StartTime: 38, FinishTime: 40},
+		{Pid: 0, StartTime: 40, FinishTime: 42},
+		{Pid: 0, StartTime: 42, FinishTime: 44},
 	}
 	ttTime, responseTime, waitTime := AverageTime(processes, processesExecution, true)
 	got := []float32{ttTime, responseTime, waitTime}
