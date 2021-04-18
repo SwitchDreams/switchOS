@@ -1,13 +1,15 @@
 package processes
 
+const Quantum = 2
+
 type Process struct {
-	id          int
-	arrivalTime int
-	duration    int
+	ID          int
+	ArrivalTime int
+	Duration    int
 }
 
 type ProcessExecution struct {
-	pid        int
-	startTime  int
-	finishTime int
+	Pid        int
+	StartTime  int
+	FinishTime int
 }
