@@ -34,7 +34,7 @@ func Parse(filename string) ([]Process, errors.IOSError) {
 			ArrivalTime: arrival,
 			Duration:    Duration,
 		})
-		contador += 1
+		contador++
 	}
 
 	return processList, nil

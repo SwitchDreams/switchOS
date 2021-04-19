@@ -1,5 +1,6 @@
 package processes
 
+// AverageTime calculates the average times during executions
 func AverageTime(processes []Process, processExecutions []ProcessExecution, isRR bool) (float32, float32, float32) {
 	var turnAroundTime int
 	var waitTime int
@@ -7,7 +8,7 @@ func AverageTime(processes []Process, processExecutions []ProcessExecution, isRR
 	lenProcesses := len(processes)
 	for i := len(processExecutions) - 1; i >= 0; i-- {
 		// If process has finished
-		if !Find(finishedPids, processExecutions[i].Pid) {
+		if !find(finishedPids, processExecutions[i].Pid) {
 			var turnAroundProcessTime int
 			// TurnAround
 			turnAroundProcessTime += processExecutions[i].FinishTime
@@ -32,7 +33,7 @@ func AverageTime(processes []Process, processExecutions []ProcessExecution, isRR
 	return turnAroundAverage, responseAverage, waitTimeAverage
 }
 
-func Find(slice []int, val int) bool {
+func find(slice []int, val int) bool {
 	for _, item := range slice {
 		if item == val {
 			return true
