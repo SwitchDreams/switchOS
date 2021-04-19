@@ -2,15 +2,16 @@ package processes
 
 import (
 	"fmt"
-	"log"
 	"os"
+
+	"github.com/switchdreams/switchOS/errors"
 )
 
-func ExecutionToFile(processesExecutionList []ProcessExecution, filename string) {
+// ExecutionToFile outputs the process execution list to a file
+func ExecutionToFile(processesExecutionList []ProcessExecution, filename string) errors.IOSError {
 	f, err := os.Create("./output/" + filename)
-
 	if err != nil {
-		log.Fatal(err)
+		return errors.WrapError(err, fmt.Sprintf("Failed to create output file '%s'", filename))
 	}
 
 	defer f.Close()
@@ -19,7 +20,9 @@ func ExecutionToFile(processesExecutionList []ProcessExecution, filename string)
 		_, err := f.WriteString(fmt.Sprintf("Rodar processo [%d] de [%d] ate [%d]\n",
 			processExecution.Pid, processExecution.StartTime, processExecution.FinishTime))
 		if err != nil {
-			return
+			return errors.WrapError(err, "Failed to write to output file")
 		}
 	}
+
+	return nil
 }

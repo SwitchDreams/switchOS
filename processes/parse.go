@@ -2,17 +2,20 @@ package processes
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/switchdreams/switchOS/errors"
 )
 
 // Parse parses input filr
-func Parse(filename string) ([]Process, error) {
+func Parse(filename string) ([]Process, errors.IOSError) {
 	var contador int
 	file, err := os.Open(filename)
 	if err != nil {
-		return nil, err
+		return nil, errors.WrapError(err, fmt.Sprintf("Failed to open input file '%s'", filename))
 	}
 	defer file.Close()
 
