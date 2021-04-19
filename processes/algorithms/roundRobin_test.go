@@ -39,7 +39,7 @@ func TestRoundRobin(t *testing.T) {
 		{Pid: 0, StartTime: 40, FinishTime: 42},
 		{Pid: 0, StartTime: 42, FinishTime: 44},
 	}
-	got, _ := RoundRobin(processes)
+	got := RoundRobin(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {
@@ -67,7 +67,7 @@ func TestRoundRobinDurationNotMod2(t *testing.T) {
 		{Pid: 4, StartTime: 14, FinishTime: 16},
 		{Pid: 4, StartTime: 16, FinishTime: 17},
 	}
-	got, _ := RoundRobin(processes)
+	got := RoundRobin(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {
@@ -87,7 +87,7 @@ func TestRoundRobinWithIdleTime(t *testing.T) {
 		{Pid: 2, StartTime: 2, FinishTime: 4},
 		{Pid: 3, StartTime: 4, FinishTime: 5},
 	}
-	got, _ := RoundRobin(processes)
+	got := RoundRobin(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {

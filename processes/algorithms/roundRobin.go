@@ -4,7 +4,7 @@ import p "github.com/switchdreams/switchOS/processes"
 
 // RoundRobin implements scheduling algorithm that uses the quantum time
 // to organize processes
-func RoundRobin(processes []p.Process) ([]p.ProcessExecution, error) {
+func RoundRobin(processes []p.Process) []p.ProcessExecution {
 	var processExecutionList []p.ProcessExecution
 	var arrivedProcesses, registeredProcesses, nextArrivedProcesses []p.Process
 	var FinishTime, decreaseTime int
@@ -66,7 +66,7 @@ func RoundRobin(processes []p.Process) ([]p.ProcessExecution, error) {
 
 		currentTime = FinishTime
 	}
-	return processExecutionList, nil
+	return processExecutionList
 }
 
 func decreaseDurationProcess(processes []p.Process, ID int, decreaseTime int) []p.Process {

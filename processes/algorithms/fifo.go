@@ -3,7 +3,7 @@ package algorithms
 import p "github.com/switchdreams/switchOS/processes"
 
 // Fifo implements the First In First Out scheduling algorithm
-func Fifo(processes []p.Process) ([]p.ProcessExecution, error) {
+func Fifo(processes []p.Process) []p.ProcessExecution {
 	var processExecutionList []p.ProcessExecution
 	var currentTime int
 	var StartTime int
@@ -20,5 +20,5 @@ func Fifo(processes []p.Process) ([]p.ProcessExecution, error) {
 		})
 		currentTime = process.Duration + StartTime
 	}
-	return processExecutionList, nil
+	return processExecutionList
 }

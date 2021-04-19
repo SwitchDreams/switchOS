@@ -7,7 +7,7 @@ import (
 )
 
 // Sjf implements the Shortest Job First scheduling algorithm
-func Sjf(processes []p.Process) ([]p.ProcessExecution, error) {
+func Sjf(processes []p.Process) []p.ProcessExecution {
 
 	var currentTime int
 	var arrivedProcesses []p.Process
@@ -32,7 +32,7 @@ func Sjf(processes []p.Process) ([]p.ProcessExecution, error) {
 		processes = removeProcesses(processes, arrivedProcesses[0].ID)
 	}
 
-	return processExecutionList, nil
+	return processExecutionList
 }
 
 func removeProcesses(processes []p.Process, ID int) []p.Process {

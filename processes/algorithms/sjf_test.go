@@ -18,7 +18,7 @@ func TestSjf(t *testing.T) {
 		{Pid: 3, StartTime: 16, FinishTime: 24},
 		{Pid: 0, StartTime: 24, FinishTime: 44},
 	}
-	got, _ := Sjf(processes)
+	got := Sjf(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {
@@ -34,7 +34,7 @@ func TestSjfWithIdleTime(t *testing.T) {
 		{Pid: 0, StartTime: 0, FinishTime: 5},
 		{Pid: 1, StartTime: 7, FinishTime: 17},
 	}
-	got, _ := Sjf(processes)
+	got := Sjf(processes)
 	want := processesExecution
 
 	if !reflect.DeepEqual(got, want) {
