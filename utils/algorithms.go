@@ -3,6 +3,7 @@ package utils
 import (
 	"sort"
 
+	m "github.com/switchdreams/switchOS/memory"
 	p "github.com/switchdreams/switchOS/processes"
 )
 
