@@ -109,8 +109,8 @@ func MinFrame(frames []m.FramesList) m.FramesList {
 // Remove the smallest frame and add the new
 func SwapFrame(frames []m.FramesList, newFrame m.FramesList) []m.FramesList {
 	min := MinFrame(frames)
-	returnFrames := RemoveFrame(frames, min.Page)
-	return append(returnFrames, newFrame)
+	frames = RemoveFrame(frames, min.Page)
+	return append(frames, newFrame)
 }
 
 // When the frame is in use, we update the arrived attribute
