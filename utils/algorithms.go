@@ -62,3 +62,13 @@ func GetSortedArrivedProcesses(processes []p.Process, currentTime int) []p.Proce
 	sort.Slice(arrivedProcesses, func(i, j int) bool { return arrivedProcesses[i].Duration < arrivedProcesses[j].Duration })
 	return arrivedProcesses
 }
+
+// Search RAM frame
+func Find(slice []int, val int) bool {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
+}
