@@ -72,3 +72,52 @@ func Find(slice []int, val int) bool {
 	}
 	return false
 }
+
+// Find Frame by Page - LRU
+func FindFrameLru(slice []m.FramesList, val int) bool {
+	for _, item := range slice {
+		if item.Page == val {
+			return true
+		}
+	}
+	return false
+}
+
+// RemoveProcesses removes a speficic process based on its id
+func RemoveFrame(frames []m.FramesList, val int) []m.FramesList {
+	var newFrames []m.FramesList
+	for _, frame := range frames {
+		if frame.Page != val {
+			newFrames = append(newFrames, frame)
+		}
+	}
+	return newFrames
+}
+
+// Return frame with smallest arrived
+func MinFrame(frames []m.FramesList) m.FramesList {
+	min := frames[0]
+	for _, frame := range frames {
+		if min.Arrived > frame.Arrived {
+			min = frame
+		}
+	}
+	return min
+}
+
+// Remove the smallest frame and add the new
+func SwapFrame(frames []m.FramesList, newFrame m.FramesList) []m.FramesList {
+	min := MinFrame(frames)
+	returnFrames := RemoveFrame(frames, min.Page)
+	return append(returnFrames, newFrame)
+}
+
+// When the frame is in use, we update the arrived attribute
+func UpdateUsedFrame(frames []m.FramesList, page int, cont int) []m.FramesList {
+	for idx, frame := range frames {
+		if frame.Page == page {
+			frames[idx].Arrived = cont
+		}
+	}
+	return frames
+}
