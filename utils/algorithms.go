@@ -3,7 +3,6 @@ package utils
 import (
 	"sort"
 
-	m "github.com/switchdreams/switchOS/memory"
 	p "github.com/switchdreams/switchOS/processes"
 )
 
@@ -62,63 +61,4 @@ func GetSortedArrivedProcesses(processes []p.Process, currentTime int) []p.Proce
 	arrivedProcesses := GetArrivedProcesses(processes, currentTime)
 	sort.Slice(arrivedProcesses, func(i, j int) bool { return arrivedProcesses[i].Duration < arrivedProcesses[j].Duration })
 	return arrivedProcesses
-}
-
-// Search RAM frame
-func Find(slice []int, val int) bool {
-	for _, item := range slice {
-		if item == val {
-			return true
-		}
-	}
-	return false
-}
-
-// Find Frame by Page - LRU
-func FindFrameLru(slice []m.FramesList, val int) bool {
-	for _, item := range slice {
-		if item.Page == val {
-			return true
-		}
-	}
-	return false
-}
-
-// RemoveProcesses removes a speficic process based on its id
-func RemoveFrame(frames []m.FramesList, val int) []m.FramesList {
-	var newFrames []m.FramesList
-	for _, frame := range frames {
-		if frame.Page != val {
-			newFrames = append(newFrames, frame)
-		}
-	}
-	return newFrames
-}
-
-// Return frame with smallest arrived
-func MinFrame(frames []m.FramesList) m.FramesList {
-	min := frames[0]
-	for _, frame := range frames {
-		if min.Arrived > frame.Arrived {
-			min = frame
-		}
-	}
-	return min
-}
-
-// Remove the smallest frame and add the new
-func SwapFrame(frames []m.FramesList, newFrame m.FramesList) []m.FramesList {
-	min := MinFrame(frames)
-	frames = RemoveFrame(frames, min.Page)
-	return append(frames, newFrame)
-}
-
-// When the frame is in use, we update the arrived attribute
-func UpdateUsedFrame(frames []m.FramesList, page int, cont int) []m.FramesList {
-	for idx, frame := range frames {
-		if frame.Page == page {
-			frames[idx].Arrived = cont
-		}
-	}
-	return frames
 }
