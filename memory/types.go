@@ -5,3 +5,8 @@ type Memory struct {
 	Size     int
 	Sequence []int
 }
+
+type FramesList struct {
+	Page    int
+	Arrived int
+}
