@@ -9,9 +9,23 @@ import (
 
 func TestLru(t *testing.T) {
 	memory := m.Memory{
-		Size:     4,
-		Sequence: []int{1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5},
+		Size: 4,
+		Sequence: []m.MemorySequence{
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 1},
+			{Page: 2},
+			{Page: 5},
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 5},
+		},
 	}
+
 	got := Lru(memory)
 	want := 8
 
@@ -22,9 +36,23 @@ func TestLru(t *testing.T) {
 
 func Test2Lru(t *testing.T) {
 	memory := m.Memory{
-		Size:     4,
-		Sequence: []int{2, 3, 1, 5, 7, 3, 1, 1, 8, 9, 1, 5},
+		Size: 4,
+		Sequence: []m.MemorySequence{
+			{Page: 2},
+			{Page: 3},
+			{Page: 1},
+			{Page: 5},
+			{Page: 7},
+			{Page: 3},
+			{Page: 1},
+			{Page: 1},
+			{Page: 8},
+			{Page: 9},
+			{Page: 1},
+			{Page: 5},
+		},
 	}
+
 	got := Lru(memory)
 	want := 8
 
@@ -35,9 +63,21 @@ func Test2Lru(t *testing.T) {
 
 func Test3Lru(t *testing.T) {
 	memory := m.Memory{
-		Size:     3,
-		Sequence: []int{1, 3, 5, 2, 3, 7, 1, 3, 8, 4},
+		Size: 3,
+		Sequence: []m.MemorySequence{
+			{Page: 1},
+			{Page: 3},
+			{Page: 5},
+			{Page: 2},
+			{Page: 3},
+			{Page: 7},
+			{Page: 1},
+			{Page: 3},
+			{Page: 8},
+			{Page: 4},
+		},
 	}
+
 	got := Lru(memory)
 	want := 8
 
@@ -48,9 +88,26 @@ func Test3Lru(t *testing.T) {
 
 func Test4Lru(t *testing.T) {
 	memory := m.Memory{
-		Size:     3,
-		Sequence: []int{7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2},
+		Size: 3,
+		Sequence: []m.MemorySequence{
+			{Page: 7},
+			{Page: 0},
+			{Page: 1},
+			{Page: 2},
+			{Page: 0},
+			{Page: 3},
+			{Page: 0},
+			{Page: 4},
+			{Page: 2},
+			{Page: 3},
+			{Page: 0},
+			{Page: 3},
+			{Page: 2},
+			{Page: 1},
+			{Page: 2},
+		},
 	}
+
 	got := Lru(memory)
 	want := 10
 

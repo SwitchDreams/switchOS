@@ -9,9 +9,23 @@ import (
 
 func TestSecondChance(t *testing.T) {
 	memory := m.Memory{
-		Size:     4,
-		Sequence: []int{1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5},
+		Size: 4,
+		Sequence: []m.MemorySequence{
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 1},
+			{Page: 2},
+			{Page: 5},
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 5},
+		},
 	}
+
 	got := SecondChance(memory)
 	want := 10
 

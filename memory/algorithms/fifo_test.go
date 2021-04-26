@@ -9,9 +9,23 @@ import (
 
 func TestFifo(t *testing.T) {
 	memory := m.Memory{
-		Size:     4,
-		Sequence: []int{1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5},
+		Size: 4,
+		Sequence: []m.MemorySequence{
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 1},
+			{Page: 2},
+			{Page: 5},
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 5},
+		},
 	}
+
 	got := Fifo(memory)
 	want := 10
 
@@ -22,9 +36,23 @@ func TestFifo(t *testing.T) {
 
 func TestFifoSize3(t *testing.T) {
 	memory := m.Memory{
-		Size:     3,
-		Sequence: []int{1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5},
+		Size: 3,
+		Sequence: []m.MemorySequence{
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 1},
+			{Page: 2},
+			{Page: 5},
+			{Page: 1},
+			{Page: 2},
+			{Page: 3},
+			{Page: 4},
+			{Page: 5},
+		},
 	}
+
 	got := Fifo(memory)
 	want := 9
 
