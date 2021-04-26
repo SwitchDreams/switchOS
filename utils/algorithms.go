@@ -64,16 +64,6 @@ func GetSortedArrivedProcesses(processes []p.Process, currentTime int) []p.Proce
 	return arrivedProcesses
 }
 
-// Search RAM frame
-func Find(slice []int, val int) bool {
-	for _, item := range slice {
-		if item == val {
-			return true
-		}
-	}
-	return false
-}
-
 // Find Frame by Page - LRU
 func FindFrameLru(slice []m.FramesList, val int) bool {
 	for _, item := range slice {
