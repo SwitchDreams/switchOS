@@ -5,13 +5,13 @@ import (
 )
 
 // Find RAM frame
-func Find(slice []int, val int) (int, bool) {
+func Find(slice []int, val int) bool {
 	for _, item := range slice {
 		if item == val {
-			return item, true
+			return true
 		}
 	}
-	return 0, false
+	return false
 }
 
 // FindFrameLru Find Frame by Page - LRU
