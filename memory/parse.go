@@ -3,9 +3,10 @@ package memory
 import (
 	"bufio"
 	"fmt"
-	"github.com/switchdreams/switchOS/errors"
 	"os"
 	"strconv"
+
+	"github.com/switchdreams/switchOS/errors"
 )
 
 // Parse parses input file
@@ -27,7 +28,7 @@ func Parse(filename string) (Memory, errors.IOSError) {
 		if cont == 0 {
 			memory.Size = Num
 		} else {
-			memory.Sequence = append(memory.Sequence, Num)
+			memory.Sequence = append(memory.Sequence, MemorySequence{Page: Num})
 		}
 		cont++
 	}

@@ -11,16 +11,16 @@ func Lru(memory m.Memory) int {
 	var faults int
 	var cont int
 	for _, page := range memory.Sequence {
-		if !utils.FindFrameLru(framesList, page) {
-			faults += 1
+		if !utils.FindFrameLru(framesList, page.Page) {
+			faults++
 			if cont < memory.Size {
-				framesList = append(framesList, m.FramesList{Page: page, Arrived: cont})
+				framesList = append(framesList, m.FramesList{Page: page.Page, Arrived: cont})
 			} else {
-				framesList = utils.SwapFrame(framesList, m.FramesList{Page: page, Arrived: cont})
+				framesList = utils.SwapFrame(framesList, m.FramesList{Page: page.Page, Arrived: cont})
 			}
-			cont += 1
+			cont++
 		} else {
-			framesList = utils.UpdateUsedFrame(framesList, page, cont)
+			framesList = utils.UpdateUsedFrame(framesList, page.Page, cont)
 		}
 	}
 	return faults

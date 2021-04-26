@@ -11,10 +11,10 @@ func Fifo(memory m.Memory) int {
 	var faults int
 	var cont int
 	for _, page := range memory.Sequence {
-		if !utils.Find(ram, page) {
-			faults += 1
-			ram[cont%memory.Size] = page
-			cont += 1
+		if _, ok := utils.Find(ram, page.Page); !ok {
+			faults++
+			ram[cont%memory.Size] = page.Page
+			cont++
 		}
 	}
 	return faults
