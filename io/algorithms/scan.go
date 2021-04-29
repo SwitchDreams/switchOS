@@ -8,9 +8,9 @@ import (
 // Scan implements the SCAN (Elevator) Disk Scheduling Algorithms
 // The default initialize is from right to left
 func Scan(disk io.Disk) int {
-	var pendingCylinders = disk.Sequence
-	var finished = false
-	var countCylinders = 0
+	var countCylinders int
+	pendingCylinders := disk.Sequence
+	finished := false
 	// Scans left
 	for i := disk.Init; i > 0; i-- {
 		countCylinders += 1
