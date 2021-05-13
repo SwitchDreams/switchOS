@@ -7,7 +7,7 @@ func AverageTime(processes []Process, processExecutions []ProcessExecution, isRR
 	var finishedPids []int
 	lenProcesses := len(processes)
 	for i := len(processExecutions) - 1; i >= 0; i-- {
-		// If process has finished
+		// If process has not finished
 		if !find(finishedPids, processExecutions[i].Pid) {
 			var turnAroundProcessTime int
 			// TurnAround
