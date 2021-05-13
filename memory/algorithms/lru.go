@@ -16,7 +16,7 @@ func Lru(memory m.Memory) int {
 			if cont < memory.Size {
 				framesList = append(framesList, m.FramesList{Page: page, Arrived: cont})
 			} else {
-				framesList = utils.SwapFrame(framesList, m.FramesList{Page: page, Arrived: cont})
+				framesList = utils.SwapMinFrame(framesList, m.FramesList{Page: page, Arrived: cont})
 			}
 			cont += 1
 		} else {

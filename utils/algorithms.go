@@ -97,9 +97,15 @@ func MinFrame(frames []m.FramesList) m.FramesList {
 }
 
 // Remove the smallest frame and add the new
-func SwapFrame(frames []m.FramesList, newFrame m.FramesList) []m.FramesList {
+func SwapMinFrame(frames []m.FramesList, newFrame m.FramesList) []m.FramesList {
 	min := MinFrame(frames)
 	frames = RemoveFrame(frames, min.Page)
+	return append(frames, newFrame)
+}
+
+// Swaps the first terms
+func SwapFirstFrame(frames []m.FramesList, newFrame m.FramesList) []m.FramesList {
+	frames = RemoveFrame(frames, frames[0].Page)
 	return append(frames, newFrame)
 }
 

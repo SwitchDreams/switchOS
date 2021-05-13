@@ -10,3 +10,8 @@ type FramesList struct {
 	Page    int
 	Arrived int
 }
+
+type FramesListSecondChance struct {
+	Page int
+	R    int
+}
