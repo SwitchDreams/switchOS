@@ -94,3 +94,30 @@ func TestRoundRobinWithIdleTime(t *testing.T) {
 		t.Errorf("\ngot    %v \nwanted %v", got, want)
 	}
 }
+
+func TestRoundRobinFinal(t *testing.T) {
+	processes := []p.Process{
+		{ID: 1, ArrivalTime: 0, Duration: 7},
+		{ID: 2, ArrivalTime: 2, Duration: 4},
+		{ID: 3, ArrivalTime: 4, Duration: 1},
+		{ID: 4, ArrivalTime: 5, Duration: 4},
+	}
+
+	processesExecution := []p.ProcessExecution{
+		{Pid: 1, StartTime: 0, FinishTime: 2},
+		{Pid: 2, StartTime: 2, FinishTime: 4},
+		{Pid: 3, StartTime: 4, FinishTime: 5},
+		{Pid: 4, StartTime: 5, FinishTime: 7},
+		{Pid: 1, StartTime: 7, FinishTime: 9},
+		{Pid: 2, StartTime: 9, FinishTime: 11},
+		{Pid: 4, StartTime: 11, FinishTime: 13},
+		{Pid: 1, StartTime: 13, FinishTime: 15},
+		{Pid: 1, StartTime: 15, FinishTime: 16},
+	}
+	got := RoundRobin(processes)
+	want := processesExecution
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("\ngot    %v \nwanted %v", got, want)
+	}
+}
