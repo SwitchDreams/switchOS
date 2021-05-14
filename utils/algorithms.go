@@ -74,6 +74,16 @@ func FindFrameLru(slice []m.FramesList, val int) bool {
 	return false
 }
 
+// Find Frame by Page - LRU
+func FindFrame2chance(slice []m.FramesListSecondChance, val int) (int, bool) {
+	for idx, item := range slice {
+		if item.Page == val {
+			return idx, true
+		}
+	}
+	return -1, false
+}
+
 // RemoveProcesses removes a speficic process based on its id
 func RemoveFrame(frames []m.FramesList, val int) []m.FramesList {
 	var newFrames []m.FramesList
