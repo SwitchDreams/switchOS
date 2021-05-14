@@ -1,9 +1,10 @@
 package algorithms
 
 import (
-	io "github.com/switchdreams/switchOS/io"
 	"reflect"
 	"testing"
+
+	io "github.com/switchdreams/switchOS/io"
 )
 
 func TestScan(t *testing.T) {
@@ -55,7 +56,7 @@ func TestScanOnlyRight(t *testing.T) {
 		Sequence: []int{60},
 	}
 	got := Scan(disk)
-	want := 111
+	want := 113
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %v, wanted %v", got, want)
