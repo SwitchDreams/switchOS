@@ -106,12 +106,12 @@ func TestRoundRobinFinal(t *testing.T) {
 	processesExecution := []p.ProcessExecution{
 		{Pid: 1, StartTime: 0, FinishTime: 2},
 		{Pid: 2, StartTime: 2, FinishTime: 4},
-		{Pid: 3, StartTime: 4, FinishTime: 5},
-		{Pid: 4, StartTime: 5, FinishTime: 7},
-		{Pid: 1, StartTime: 7, FinishTime: 9},
-		{Pid: 2, StartTime: 9, FinishTime: 11},
-		{Pid: 4, StartTime: 11, FinishTime: 13},
-		{Pid: 1, StartTime: 13, FinishTime: 15},
+		{Pid: 1, StartTime: 4, FinishTime: 6},
+		{Pid: 3, StartTime: 6, FinishTime: 7},
+		{Pid: 2, StartTime: 7, FinishTime: 9},
+		{Pid: 4, StartTime: 9, FinishTime: 11},
+		{Pid: 1, StartTime: 11, FinishTime: 13},
+		{Pid: 4, StartTime: 13, FinishTime: 15},
 		{Pid: 1, StartTime: 15, FinishTime: 16},
 	}
 	got := RoundRobin(processes)
