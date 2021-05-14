@@ -33,3 +33,31 @@ func TestScanGeek(t *testing.T) {
 		t.Errorf("got %v, wanted %v", got, want)
 	}
 }
+
+func TestScanOnlyLeft(t *testing.T) {
+	disk := io.Disk{
+		Size:     199,
+		Init:     53,
+		Sequence: []int{40, 30},
+	}
+	got := Scan(disk)
+	want := 23
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v, wanted %v", got, want)
+	}
+}
+
+func TestScanOnlyRight(t *testing.T) {
+	disk := io.Disk{
+		Size:     199,
+		Init:     53,
+		Sequence: []int{60},
+	}
+	got := Scan(disk)
+	want := 111
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v, wanted %v", got, want)
+	}
+}
