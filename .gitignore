@@ -16,3 +16,6 @@
 
 # JetBrains IDE
 .idea
+
+output
+main
