@@ -1,39 +1,49 @@
 package algorithms
 
 import (
-	"fmt"
 	m "github.com/switchdreams/switchOS/memory"
 	"github.com/switchdreams/switchOS/utils"
 )
 
 // SecondChance implements the FIFO variation
 func SecondChance(memory m.Memory) int {
-	var framesList []m.FramesList
-	var faults int
-	for i := 0; i < len(memory.Sequence); i++ {
-		page := memory.Sequence[i]
-		fmt.Println(framesList)
-		if !utils.FindFrameLru(framesList, page) {
-			// If memory is not full
-			faults += 1
+	var storage []m.FramesListSecondChance
+	faults := 0
+	victimPage := 0
+	for i, page := range memory.Sequence {
+		if index, ok := utils.FindFrame2chance(storage, page); !ok {
 			if i < memory.Size {
-				framesList = append(framesList, m.FramesList{Page: page, Arrived: 0})
+				storage = append(storage, m.FramesListSecondChance{
+					Page: page,
+					R:    1,
+				})
+				faults++
 			} else {
-				for _, frame := range framesList {
-					if frame.Arrived == 1 {
-						framesList = utils.SwapFirstFrame(framesList, m.FramesList{Page: page, Arrived: 0})
+				allOnes := true
+				for idx := victimPage; idx < len(storage); idx++ {
+					if storage[idx].R == 1 {
+						storage[idx].R = 0
 					} else {
-						framesList[0].Arrived += 1
+						storage[idx].Page = page
+						storage[idx].R = 1
 
-						// Swaps the first and last elements of a slice
-						first := framesList[0]
-						framesList = framesList[1:]
-						framesList = append(framesList, first)
+						allOnes = false
+						victimPage = idx
+						faults++
+						break
 					}
+				}
+				if allOnes {
+					storage[0] = m.FramesListSecondChance{
+						Page: page,
+						R:    1,
+					}
+
+					faults++
 				}
 			}
 		} else {
-			framesList = utils.UpdateUsedFrame(framesList, page, 0)
+			storage[index].R = 1
 		}
 	}
 	return faults
