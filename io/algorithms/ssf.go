@@ -4,18 +4,24 @@ import (
 	"sort"
 
 	io "github.com/switchdreams/switchOS/io"
+	"github.com/switchdreams/switchOS/utils"
 )
 
 func SSF(disk io.Disk) int {
 
-	separatedSequence := separateList(disk.Sequence, disk.Init)
+	aux := disk.Sequence
+	head := disk.Init
+	seek := 0
+	for range disk.Sequence {
+		closest := getClosest(aux, head)
 
-	seekTime := abs(separatedSequence[0] - disk.Init)
-	for i := 0; i < len(separatedSequence)-1; i++ {
-		seekTime += abs(separatedSequence[i] - separatedSequence[i+1])
+		aux = utils.Remove(aux, closest)
+
+		seek += abs(closest - head)
+		head = closest
 	}
 
-	return seekTime
+	return seek
 }
 
 func separateList(list []int, value int) []int {
@@ -36,6 +42,20 @@ func separateList(list []int, value int) []int {
 	sort.Ints(greaterThan)
 
 	return append(lessThan, greaterThan...)
+}
+
+func getClosest(list []int, target int) int {
+	distance := abs(list[0] - target)
+	idx := 0
+	for i := 1; i < len(list); i++ {
+		dst := abs(list[i] - target)
+		if dst < distance {
+			idx = i
+			distance = dst
+		}
+	}
+
+	return list[idx]
 }
 
 func abs(n int) int {

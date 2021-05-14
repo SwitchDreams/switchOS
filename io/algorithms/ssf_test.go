@@ -13,7 +13,7 @@ func TestSSF(t *testing.T) {
 		Init:     53,
 		Sequence: []int{98, 183, 37, 122, 14, 124, 65, 67},
 	}
-	got := Scan(disk)
+	got := SSF(disk)
 	want := 236
 
 	if !reflect.DeepEqual(got, want) {
