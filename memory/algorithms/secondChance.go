@@ -10,22 +10,26 @@ func SecondChance(memory m.Memory) int {
 	var storage []m.FramesListSecondChance
 	faults := 0
 	victimPage := 0
-	for i, page := range memory.Sequence {
+	for _, page := range memory.Sequence {
 		if index, ok := utils.FindFrame2chance(storage, page); !ok {
-			if i < memory.Size {
+			if len(storage) < memory.Size {
 				storage = append(storage, m.FramesListSecondChance{
 					Page: page,
-					R:    1,
+					R:    true,
 				})
 				faults++
 			} else {
 				allOnes := true
 				for idx := victimPage; idx < len(storage); idx++ {
-					if storage[idx].R == 1 {
-						storage[idx].R = 0
+					if storage[idx].R == true {
+						if storage[idx].Count == 3 {
+							storage[idx].R = false
+						} else {
+							storage[idx].Count++
+						}
 					} else {
 						storage[idx].Page = page
-						storage[idx].R = 1
+						storage[idx].R = true
 
 						allOnes = false
 						victimPage = idx
@@ -36,14 +40,13 @@ func SecondChance(memory m.Memory) int {
 				if allOnes {
 					storage[0] = m.FramesListSecondChance{
 						Page: page,
-						R:    1,
+						R:    true,
 					}
-
 					faults++
 				}
 			}
 		} else {
-			storage[index].R = 1
+			storage[index].R = true
 		}
 	}
 	return faults
