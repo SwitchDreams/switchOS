@@ -12,6 +12,7 @@ type FramesList struct {
 }
 
 type FramesListSecondChance struct {
-	Page int
-	R    int
+	Page  int
+	R     bool
+	Count int
 }
