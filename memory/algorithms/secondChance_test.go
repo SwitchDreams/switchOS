@@ -7,26 +7,14 @@ import (
 	m "github.com/switchdreams/switchOS/memory"
 )
 
-func TestSecondChance(t *testing.T) {
+func TestAleteia(t *testing.T) {
 	memory := m.Memory{
-		Size:     4,
-		Sequence: []int{1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5},
+		Size:     6,
+		Sequence: []int{1, 3, 5, 9, 3, 9, 5, 7, 8, 1, 10, 1, 2, 1, 3, 9, 10, 7},
 	}
-	got := SecondChance(memory)
-	want := 10
 
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %v, wanted %v", got, want)
-	}
-}
-
-func TestSecondChanceGeek(t *testing.T) {
-	memory := m.Memory{
-		Size:     3,
-		Sequence: []int{7, 0, 1, 2, 0, 3, 0, 4, 2, 4, 0, 3, 2},
-	}
 	got := SecondChance(memory)
-	want := 8
+	want := 11
 
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %v, wanted %v", got, want)
