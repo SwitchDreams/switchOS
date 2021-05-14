@@ -17,12 +17,12 @@ func Scan(disk io.Disk) int {
 		if finished {
 			return countCylinders
 		}
-		countCylinders += 1
+		countCylinders++
 	}
 
 	// Scans right
 	for i := 1; i < disk.Size; i++ {
-		countCylinders += 1
+		countCylinders++
 		pendingCylinders, finished = checkCylinder(pendingCylinders, i)
 		if finished {
 			break
