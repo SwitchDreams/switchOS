@@ -110,7 +110,7 @@ func handleIO(filename string) errors.IOSError {
 	scanSeekTime := ioAlgorithms.Scan(disk)
 
 	fmt.Printf("FCFS %d\n", fcfsSeekTime)
-	fmt.Printf("SSF %d\n", ssfSeekTime)
+	fmt.Printf("SSTF %d\n", ssfSeekTime)
 	fmt.Printf("SCAN %d\n", scanSeekTime)
 
 	return nil
