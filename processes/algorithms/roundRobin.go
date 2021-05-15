@@ -16,16 +16,19 @@ func RoundRobin(processes []p.Process) []p.ProcessExecution {
 		arrivedProcesses = utils.GetAtMomentProcesses(processes, currentTime)
 		registeredProcesses = append(registeredProcesses, arrivedProcesses...)
 
-		// nextArrived adiciona na lista final de execução (registeredProcess) os processos do próximo ciclo
-		// para ordenar corretamente o Slice
-		nextArrivedProcesses = utils.GetAtMomentProcesses(processes, currentTime+p.Quantum)
-		if len(nextArrivedProcesses) > 0 {
-			registeredProcesses = append(registeredProcesses, nextArrivedProcesses...)
-		}
-
 		// Ao adicionar os processos no slice de execução (registered), remove da lista inicial de processos
 		for _, p := range arrivedProcesses {
 			processes = utils.RemoveProcesses(processes, p.ID)
+		}
+
+		// nextArrived adiciona na lista final de execução (registeredProcess) os processos do próximo ciclo
+		// para ordenar corretamente o Slice
+		nextArrivedProcesses = utils.GetAtMomentProcesses(processes, currentTime+p.Quantum)
+		if len(nextArrivedProcesses) == 0 {
+			nextArrivedProcesses = utils.GetAtMomentProcesses(processes, currentTime+1)
+		}
+		if len(nextArrivedProcesses) > 0 {
+			registeredProcesses = append(registeredProcesses, nextArrivedProcesses...)
 		}
 
 		for _, p := range nextArrivedProcesses {
